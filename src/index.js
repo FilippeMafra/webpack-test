@@ -1,5 +1,7 @@
 import './style.css'
 import Image from './img.jpg'
+import Data from './data.xml'
+import Notes from './data.csv'
 
 function component() {
   const element = document.createElement('div')
@@ -11,6 +13,9 @@ function component() {
   const myIcon = new Image()
   myIcon.src = Image
   element.appendChild(myIcon)
+
+  console.log(Data)
+  console.log(Notes)
 
   return element
 }
