@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'MyFont';
+
+  src: url('./IndieFlower-Regular.ttf') format('ifr'),
+    url('./Merienda-VariableFont_wght.ttf') format('mvf');
+
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hello {
+  color: red;
+  background: url('./img.jpg');
+  font-family: 'MyFont';
+}

@@ -1,7 +1,16 @@
+import './style.css'
+import Image from './img.jpg'
+
 function component() {
   const element = document.createElement('div')
 
   element.innerHTML = 'Hello Webpack'
+  element.classList.add('hello')
+
+  // Add the image to our existing div.
+  const myIcon = new Image()
+  myIcon.src = Image
+  element.appendChild(myIcon)
 
   return element
 }
