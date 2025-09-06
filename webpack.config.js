@@ -4,12 +4,16 @@ const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
   entry: {
-    index: './src/index.js',
-    print: './src/print.js',
+    app: ['./src/app.js'],
   },
-  devtool: 'inline-source-map',
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  devtool: process.env.NODE_ENV === 'development' ? 'source-map' : undefined,
   devServer: {
     static: './dist',
   },
@@ -19,13 +23,18 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin(),
   ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
-  },
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
