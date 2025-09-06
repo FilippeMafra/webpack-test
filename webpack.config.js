@@ -7,9 +7,13 @@ module.exports = {
     index: './src/index.js',
     print: './src/print.js',
   },
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Development',
     }),
   ],
   output: {
@@ -36,5 +40,8 @@ module.exports = {
         use: ['csv-loader'],
       },
     ],
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
 }
